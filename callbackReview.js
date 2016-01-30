@@ -1,6 +1,10 @@
 /* Declare and Define the functions here that will make the function calls below work properly */
 
-
+var first = function(name, cb) {
+  for(var i = 0; i < name.length; i++) {
+    cb(name[i]);
+  }
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -13,7 +17,11 @@ first(names, function(firstName){
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
 
-
+var last = function(name, cb){
+  for(var i = 0; i < name.length; i++) {
+    cb(name[i]);
+  }
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 last(names, function(lastName){
@@ -27,6 +35,14 @@ last(names, function(lastName){
 
 //have the contains function return a boolean value for if the name is in the array or not.
 
+var contains = function(name, array, cb) {
+  var found = false;
+  if(array.indexOf(name) !== -1) {
+    found = true;
+  }
+  cb(found);
+  return found;
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains('Colt', names, function(yes){
@@ -42,8 +58,12 @@ contains('Colt', names, function(yes){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
-
+*
+var map = function(array, cb) {
+  for(var i = 0; i < array.length; i++) {
+    cb(array[i]);
+  }
+}
 
 var numbers = [1,2,3,4,5];
 //Produces a new array of values by mapping each value in list through a transformation function
@@ -56,7 +76,17 @@ map(numbers, function(num){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
+var uniq = function(array, cb) {
+  var newNames = [];
+  var obj = {};
+  for(var i = 0; i < array.length; i++) {
+    obj[array[i]] = 0;
+  }
+  for(i in obj) {
+    newNames.push(i);
+  }
+  cb(newNames);
+}
 
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -70,18 +100,33 @@ uniq(names, function(uniqArr){
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
 
-
+var each = function(array, cb) {
+  for(var i = 0; i < array.length; i++) {
+    var index = array.indexOf(array[i]) ;
+    var item = array[i];
+    cb(item, index);
+  }
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
-  console.log('The item in the ' + indice + 'position is ' + item)
+  console.log('The item in the ' + indice + ' position is ' + item)
 });
 
 
 
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
-
+*
+var getUserById = function(item, array, cb) {
+  var user;
+  for(var i = 0; i < array.length; i++) {
+    if(item === array[i].item);
+    user = array[i];
+    break;
+  }
+  cb(user);
+}
 
 
 
@@ -106,7 +151,7 @@ var users = [
   },
 ];
 getUserById('16t', users, function(user){
-  console.log('The user with the id 16t has the email of ' + user.email + 'the name of ' + user.name + ' and the address of ' + user.address); 
+  console.log('The user with the id 16t has the email of ' + user.email + 'the name of ' + user.name + ' and the address of ' + user.address);
 });
 
 
@@ -117,8 +162,17 @@ getUserById('16t', users, function(user){
 
 
 
-//Looks through each value in the list, returning the first one that passes a truth test 
+//Looks through each value in the list, returning the first one that passes a truth test
+
+var find = function(array, cb) {
+  for(var i = 0; i < array.length; i++) {
+    if (cb(array[i])) {
+      return array[i];
+    }
+  }
+}
+
 var numbers  = [1, 2, 3, 4, 5, 6];
-find(numbers, function(num){ 
+find(numbers, function(num){
   return num % 2 == 0; //should return 2
 })
